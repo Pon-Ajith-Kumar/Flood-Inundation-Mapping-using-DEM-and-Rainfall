@@ -63,6 +63,7 @@ Map.centerObject(aoi, 7);
 ```
 
 ✔ Ensures efficient processing
+
 ✔ Limits computation to the basin
 
 ---
@@ -76,6 +77,7 @@ var dem = ee.Image("USGS/SRTMGL1_003").clip(aoi);
 ```
 
 ✔ Terrain controls flood accumulation
+
 ✔ Standard dataset used in ISRO/EO workflows
 
 ---
@@ -93,6 +95,7 @@ var rain = ee.ImageCollection("UCSB-CHG/CHIRPS/DAILY")
 ```
 
 ✔ Captures extreme rainfall events
+
 ✔ Essential driver of flooding
 
 ---
@@ -112,6 +115,7 @@ var s1 = ee.ImageCollection("COPERNICUS/S1_GRD")
 ```
 
 ✔ Radar-based flood relevance
+
 ✔ Useful for validation & interpretation
 
 ---
@@ -125,6 +129,7 @@ var heavyRain = rain.gt(200);
 ```
 
 ✔ Threshold-based disaster screening
+
 ✔ Filters significant rainfall events
 
 ---
@@ -140,6 +145,7 @@ var floodRisk = dem.lt(50).and(heavyRain);
 ```
 
 ✔ Simple yet effective first-order flood model
+
 ✔ Mimics operational screening methods
 
 ---
@@ -159,6 +165,7 @@ var floodArea = pixelAreaKm2.updateMask(floodRisk).reduceRegion({
 ```
 
 ✔ Converts spatial results into actionable metrics
+
 ✔ Useful for disaster reporting
 
 ---
@@ -177,6 +184,7 @@ var floodVectors = floodRisk.selfMask().reduceToVectors({
 ```
 
 ✔ Enables GIS integration
+
 ✔ Suitable for planning & decision systems
 
 ---
@@ -225,6 +233,7 @@ Export.table.toDrive({
 A custom UI legend is added to improve interpretability.
 
 ✔ Heavy Rainfall Zones
+
 ✔ Flood-Prone Areas
 
 ---
